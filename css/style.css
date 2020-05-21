@@ -32,7 +32,7 @@ li {
 .logo {
   display: inline-block;
   font-size: 1.75rem;
-  font-weight: bold;
+  font-weight: 900;
 }
 
 #social {
@@ -111,6 +111,7 @@ nav #social a:hover {
 .container h2 {
   padding: 10px 0;
   font-size: 1.75rem;
+  font-weight: 900;
 }
 
 .post-grid {
