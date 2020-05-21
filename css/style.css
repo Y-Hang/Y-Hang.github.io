@@ -148,6 +148,16 @@ nav #social a:hover {
   transform: scale(1.02);
 }
 
+.post-link {
+  color: #fff;
+  border-bottom: #fff 2px double;
+}
+
+.post-link:hover {
+  color: burlywood;
+  border-bottom: burlywood 2px double;
+}
+
 .post-img {
   width: 100%;
   height: 100%;

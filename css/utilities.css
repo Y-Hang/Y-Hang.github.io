@@ -62,13 +62,17 @@
   font-weight: 400;
   width: 120px;
   padding: 10px;
-  background-color: rgba(200, 200, 200, 0.4);
+  background-color: rgba(200, 200, 200, 0.5);
   color: #000;
 }
 
 .btn:hover {
   background-color: #333;
   color: #fff;
+}
+
+.bg-portal:hover {
+  background-color: #000;
 }
 
 .tag {
