@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/127d67b0ea.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../css/utilities.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Hang: Billboard Hot100 Fluidity Analysis</title>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container flex-row-btw">
+      <a href="#" id="logo-text" class="logo">[Hang]</a>
+      <div class="flex-row-btw">
+        <div id="social">
+          <a href=var(--github-link) ><i class="fab fa-github fa-2x"></i></a>
+          <a href=var(--linkedin-link)><i class="fab fa-linkedin fa-2x"></i></a>
+          <a href=var(--px500-link)><i class="fab fa-500px fa-2x"></i></a>
+          <a href=""><i class="fas fa-envelope fa-2x"></i></a>
+        </div>
+        <a href="../index.html" class="btn bg-alter">HOME</a>
+        <a href="#" class="btn bg-alter">ABOUT</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Article -->
+  <article class="post-container">
+    <!-- Post Header -->
+    <header class="post-header">
+      <div id="header-content" class="container flex-col-left">
+        <span class="tag t-ent">Entertainment</span>
+        <h1>Billboard Hot100 Fluidity Analysis</h1>
+        <p>Written by Hang, Feb 24, 2020</p>
+      </div>
+    </header>
+
+    <!-- Post Content -->
+    <div class="post-content">
+
+      <h2 class="sticky-headline" id="part-intro">Introduction</h2>
+      <p>If you have not been living under a rock, you would have heard of one of the biggest hits in 2019, <em>Old Town Road</em>, which topped the Billboard Hot 100 for a record-breaking 19 weeks. However, 19 weeks with the same song on # 1 could also cause a headache for Billboard Hot 100: a stagnant chart would wear on audience's interests. So in its 60+ years' history, Billboard Hot 100 has also updated its formula and chart policy a lot to balance its representativeness of music trend and the fluidity of the chart. For example, to relieve the stagnancy caused by the integration of SoundScan and BDS (<em>Broadcast Data System</em>) data in 1990s, Billboard established a new removal policy that a song will be permanently moved to '<em>recurrent status</em>' if it has spent 20 weeks in the Hot 100 and fallen below position #50. In the last decade, the policy was extended to remove descending songs ranking below #25 after 52 weeks. However, even after these attempts to stimulate and re-activate the chart, there are still some complaints that the chart is becoming stagnant. So I start to wondering whether there is any way to measure the <em>fluidity</em> of the chart? If any, how does the <em>fluidity</em> of Billboard Hot 100 change over time? And why do people feel that the chart is becoming more stale in recent years? With these three questions in my mind, I started this mini project out of curiosity.</p>
+      <p>This project scraped the <a href="https://www.billboard.com/charts/hot-100">Billboard Hot 100 chart</a> from its very first issue dated Aug 2nd, 1958 to the recent release of Feb 1st, 2020, including the title, the artist, the trend (<em>New</em>, <em>Steady</em>, <em>Rising</em>, or <em>Failing</em>), and the specific position change of each song in chart. I first crafted some basic metrics (such as # of <em>New Entry</em>s, # of <em>Steady</em> songs, and average position change) to measure the <em>fluidity</em> of the chart, but found some contradictory evidences. Then I shifted my focus to the top part of the chart (Top10/Top40) as it had more public exposure thus may influence how stagnant people felt the chart was. In this process, several indicators, namely # of songs made it to top 10/top 40 and the distribution of duration in top10/top40, turned out to be helpful in resolving the contradiction and revealing why people found the chart stale in recent years.</p>
+
+      <h2 class="sticky-headline" id="part-i">Part I: Get the Data</h2>
+      <p>Two <em>Python</em> libs were employed to scraped the <a href="https://www.billboard.com/charts/hot-100">Billboard Hot 100 chart</a> history: <em>requests</em> and <em>bs4</em> (BeautifulSoup). To avoid being blocked by Billboard website, I set up a 5 seconds interval between each visit and let the script run for a whole night. The final data consisted of three datasets: title_df contained the title and artist info, change_df stored the position change info, and trend_df tracked the trend info (<em>New</em>, <em>Steady</em>, <em>Rising</em>, or <em>Failing</em>). Each dataset had 3210 columns and 100 rows (weekly Hot 100 from Aug 2nd, 1958 to Feb 1st, 2020). Below are the screenshots of <em>title_df</em>, <em>change_df</em>, and <em>trend_df</em>, respectively.
+      </p>
+      <img src="../img/title_df_head.png" alt="">
+      <img src="../img/change_df_head.png" alt="">
+      <img src="../img/trend_df_head.png" alt="">
+
+      <h2 class="sticky-headline" id="part-ii">Part II: The '<em>New</em>'s in Hot 100</h2>
+      <p>Regarding measuring the <em>fluidity</em> of the chart, the first thing came to my mind was how many <em>New</em> songs Billboard Hot 100 had each year. Intuitively, the more <em>New</em> songs, the less stagnant the chart is. Below graph presented the final results. There were around 600 to 700 new songs each year at the early stage, but the number gradually declined to around 300 and bottomed out in 2001 with only 288 new entries. Then the recent two decades saw a wavering growth in total <em>New</em> songs and two spikes in 2011 and 2018, the latter of which actually carried the highest amount of <em>New Entry</em> since 1971. This evidence seemed to undermine the <em>Stagnant Chart Hypothesis</em>.
+      </p>
+      <iframe id="igraph1" scrolling="no" style="border:none;" seamless="seamless" src="../visuals/new_songs_yearly.html" height="350" width="100%"></iframe>
+      <p>Next, let's take a look at how many songs debuted in the Top 40 and Top 10 over the years. As known, the manipuliation of the policy requiring availability in both retail and radio, the inclusion of digital download, and the inclusion of streaming data resulted in a lot of high-debut songs in Hot 100. Accordingly, we could see three major peaks around 1998, 2010, and 2018 in the graph below. The trend indicated that more and more new songs directly blasted into Top 40 even Top 10, which seemingly would disturb the top part of chart and make it more competitive and unpredictable. This evidence did not necessarily say that the chart was getting more current and lively, but at least it did not speak in favor of the <em>Stagnant Chart Hypothesis</em>.</p>
+      <iframe id="igraph2" scrolling="no" style="border:none;" seamless="seamless" src="../visuals/new_songs_yearly_top40.html" height="350" width="100%"></iframe>
+      <p><b>Conclusion</b>: Hot 100 saw more and more Top 40 even Top 10 debuts since 1990s along with a visible rise in <em>New</em> song in the last 2 decades, which did not stand with the <em>Stagnant Chart Hypothesis</em>.</p>
+
+      <h2 class="sticky-headline" id="part-iii">Part III: The '<em>Steady</em>'s in Hot 100</h2>
+      <p>The opposite of <em>New</em> is <em>Steady</em>: the same old song on the same position for one more week, which is being stagnant in a hardcore way. Let us see how many <em>Steady</em>s Hot 100 had each year. In the graph below, the x axis is year, and the y axis is the weekly average # of <em>Steady</em>s in chart. The three lines all soared in 1990s, when Billboard incorporated more accurate sales and radio data from SoundScan and BDS. After that, the lines all seemed to plateaued out, especially for Top 40 and Top 10.</p>
+      <iframe id="igraph3" scrolling="no" style="border:none;" seamless="seamless" src="../visuals/steady_songs_hot100.html" height="500" width="100%"></iframe> 
+      <p>Additionally, if we also consider songs with no greater than 1 position change (+1, 0, and -1. Excluding debuting <em>New</em> songs) as being <em>Steady</em> and re-plot the graph, we could see a even more plateaued-out trend for all three lines, which implied that Hot 100 saw more <em>Steady</em>s on its top part for the last 3 decades that it did for earlier decades. This could be largely explained by the inclusion of SoundScan and BDS data. But, given the conclusion of Part II, where did the influence of those increased <em>New</em> songs go?</p>
+      <iframe id="igraph4" scrolling="no" style="border:none;" seamless="seamless" src="../visuals/steady_songs_hot100_expanded.html" height="500" width="100%"></iframe> 
+      <p><b>Conclusion</b>: Hot 100 contained a relatively high portion of <em>Steady</em> songs for the last 3 decades and the trend seemed set to continue. Interestingly, the chart was having high volumes of <em>New</em> songs and <em>Steady</em> songs at the same time for recent decades, which seemed contradictory regarding whether the chart was getting more stagnant. </p>
+
+      <h2 class="sticky-headline" id="part-iv">Part IV: The <em>Tenure</em> of Songs</h2>
+      <p>Above analyses focused on two specific statuses of songs in chart: <em>New</em> and <em>Steady</em>, and got conflicting conclusions. What if we take the chart as a whole and see how many songs made it to the chart and how long they spent in chart? Below graph presented how many unique songs appeared in each year's Hot 100 chart (a song could appear in 2 or more years' charts). This chart looked and should look similar to the <em>New</em> songs graph in <a href="#igraph1">Part II</a> as every <em>New Entry</em> was also a unique song in chart. Thus the below graph clearly reflected the recent increase in total <em>New</em> songs.</p>
+      <iframe id="igraph5" scrolling="no" style="border:none;" seamless="seamless" src="../visuals/unique_songs_yearly.html" height="350" width="100%"></iframe> 
+      <p>However, if we look at the same graph for Top 40 and Top 10, something interesting emerged. The Top 40 curve seemed to respond to two spikes in high debuts/<em>New</em> entrys in 2000s and 2010s, but averagely there was no clearly upward trend. What's more interesting was the Top 10 curve: the number of songs made it to Top 10 every year actually stayed almost the same since 1990s. </p>
+      <p>From previous investigation we learnt that more songs entered the Hot 100 and more songs debuted in Top 40 even Top 10, but below graph was telling us that the number of songs made it to Top 10 every year actually stayed almost the same since 1990s, and that there were some spikes in Top 40 entrys but averagely no clearly upward trend yet. This gap explained the concurrence of high volumes in both <em>New</em>s and <em>Steady</em>s: if only a relatively fixed number of songs could enter Top 40 and Top 10 regardless of how many <em>New</em> songs there were, then the Top 40 and Top 10 in 2000s and 2010s would just be as <em>Steady</em> as they were in 1990s even with more <em>New</em> songs and high debuts. With that being said, my guess in Part II that more high debuts would make the top part of chart more competitive turned out to be false.</p>
+      <iframe id="igraph6" scrolling="no" style="border:none;" seamless="seamless" src="../visuals/unique_songs_yearly_top40.html" height="350" width="100%"></iframe> 
+      <p>If Hot 100 in 2000s and 2010s had more songs that it did in 1990s, and the Top 40 and Top 10 in 2000s and 2010s were almost as stagnant as they used to be in 1990s, why do people still feel that the chart was getting more stale in recent years? Some clues hit me when I was checking the durarion of songs on Hot 100, Top 40, Top 10, and Top 1.</p>
+
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="footerbar">
+    <div class="container flex-col-center">
+      <div id="social">
+        <a href=var(--github-link)><i class="fab fa-github fa-2x"></i></a>
+        <a href=var(--linkedin-link)><i class="fab fa-linkedin fa-2x"></i></a>
+        <a href=var(--px500-link)><i class="fab fa-500px fa-2x"></i></a>
+        <a href=""><i class="fas fa-envelope fa-2x"></i></a>
+      </div>
+      <h5>Hang &copy; 2020 San Francisco, CA</h5>
+    </div>
+  </footer>
+</body>
+</html>

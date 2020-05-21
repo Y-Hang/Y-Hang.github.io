@@ -1,0 +1,280 @@
+/* Reset Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f4f4f4;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+li {
+  list-style: none;
+}
+
+/* Navigation Bar */
+.navbar {
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  padding: 10px 0;
+  height: 65px;
+  z-index: 2;
+}
+
+.logo {
+  display: inline-block;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+#social {
+  padding-right: 20px;
+}
+
+nav #social a {
+  color: #999;
+}
+
+#social a {
+  padding: 10px;
+  transition: color 0.3s ease-in-out;
+}
+
+nav #social a:hover {
+  color: #333;
+}
+
+/* Header */
+.header-feature {
+  width: 100%;
+  height: 50vh;
+  position: relative;
+  background: url("/Y-Hang/img/Billboards_at_Time_Square.jpg") no-repeat center center/cover;
+  z-index: 0;
+}
+
+.header-feature:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+.post-header {
+  max-width: 100%;
+  height: 25vh;
+  position: relative;
+  background: url("/Y-Hang/img/Billboards_at_Time_Square.jpg") no-repeat center center/cover;
+  z-index: 0;
+}
+
+.post-header:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+#header-content,
+#header-content a {
+  color: #fff;
+  z-index: 1;
+}
+
+#header-content p {
+  max-width: 700px;
+  text-align: justify;
+  margin-bottom: 10px;
+}
+
+#header-content h1 {
+  padding: 15px 0;
+}
+
+/* Postgrid */
+.container h2 {
+  padding: 10px 0;
+  font-size: 1.75rem;
+}
+
+.post-grid {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
+  grid-auto-rows: minmax(auto, 275px);
+  grid-gap: 15px;
+}
+
+.post-card {
+  width: 100%;
+  height: 100%;
+  background-color: none;
+  border-radius: 10px;
+  position: relative;
+  transition: 0.1s ease-in-out;
+  transition-property: transform;
+}
+
+[class^="post-card grid-col"]::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+[class^="post-card grid-col"]:hover {
+  transform: scale(1.02);
+}
+
+.post-img {
+  width: 100%;
+  height: 100%;
+}
+
+.post-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.post-img-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #333;
+  opacity: 0;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.post-card:hover .post-img-overlay {
+  opacity: 0.8;
+  color: #fff;
+}
+
+.post-text {
+  max-width: 750px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  padding: 15px;
+}
+
+.post-text h3 {
+  padding: 15px 0;
+}
+
+.post-text p {
+  text-align: justify;
+}
+
+.grid-col-1-3 {
+  grid-column: 1/3;
+}
+
+.grid-col-2-4 {
+  grid-column: 2/4;
+}
+
+.grid-col-1-4 {
+  grid-column: 1/4;
+}
+
+/* Post Content */
+.post-content {
+  width: 100%;
+  height: 100%;
+  text-align: justify;
+  line-height: 1.6;
+  background-color: #fff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.post-content a {
+  color: blue;
+  border-bottom: 1px blue dashed;
+}
+
+.post-content a:hover {
+  color: salmon;
+  border-bottom: 1px salmon dashed;
+}
+
+.post-content img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-content p,
+.post-content img,
+.post-content iframe {
+  padding: 10px 15px;
+}
+
+.post-content p:hover {
+  background-color: rgba(173, 216, 230, 0.2);
+}
+
+.sticky-headline {
+  position: sticky;
+  top: 65px;
+  background-color: steelblue;
+  color: #fff;
+  padding: 5px 15px;
+}
+
+/* Footer Styling */
+.footerbar {
+  width: 100%;
+  height: auto;
+  margin-top: 40px;
+  background-color: #333;
+}
+
+.footerbar #social a {
+  color: #aaa;
+}
+
+.footerbar #social a:hover {
+  color: #fff;
+}
+
+.footerbar h5 {
+  color: #aaa;
+  padding: 10px;
+  font-weight: 300;
+}

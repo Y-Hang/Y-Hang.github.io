@@ -1,0 +1,91 @@
+/* Variables */
+:root {
+  --github-link: "https://github.com/Y-Hang";
+  --linkedin-link: "https://www.linkedin.com/in/yuhang94/";
+  --px500-link: "https://500px.com/H_Y";
+}
+
+/* Utilities Styling */
+.container {
+  height: 100%;
+  max-width: 1000px;
+  margin: auto;
+  padding: 15px;
+}
+
+.post-container {
+  height: 100%;
+  max-width: 800px;
+  margin: auto;
+  padding: 15px;
+}
+
+.flex-row-btw {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-col-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.btn {
+  padding: 10px;
+  width: 90px;
+  font-weight: bold;
+  text-align: center;
+  transition: 0.3s ease-in-out;
+  transition-property: background-color, color;
+}
+
+.bg-current {
+  background-color: steelblue;
+  color: #fff;
+}
+
+.bg-alter {
+  background-color: #f4f4f4;
+  color: #000;
+}
+
+.bg-dark {
+  background-color: #333;
+  color: #fff;
+}
+
+.bg-portal {
+  font-weight: 400;
+  width: 120px;
+  padding: 10px;
+  background-color: rgba(200, 200, 200, 0.4);
+  color: #000;
+}
+
+.btn:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.tag {
+  font-size: 0.75rem;
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: #f4f4f4;
+  color: #fff;
+}
+
+.t-ent {
+  background-color: purple;
+}
